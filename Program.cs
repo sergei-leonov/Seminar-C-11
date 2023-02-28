@@ -70,16 +70,7 @@ current++;
 */
     
 
-    /*int current = num;
-
-while(current <= num)
-
-        if ( current % 2 != 1)
-{
-         Console.WriteLine(num + " ");
-}
-        current ++;6
-        */
+    
 
        
     
