@@ -1,74 +1,114 @@
-﻿//Напишите программу, которая принимает на вход пятизначное число и проверяет, является ли оно палиндромом.
+﻿//Задача 34: Задайте массив заполненный случайными положительными трёхзначными числами.
+ //Напишите программу, которая покажет количество чётных чисел в массиве.
 
-//14212 -> нет
-//12821 -> да                    
-//23432 -> да  
-/*    
-int Prompt (string message)
+//[345, 897, 568, 234] -> 2
+
+/*
+int[] FillArrayWhithRandomNumber(int size)
 {
-Console.Write(message);
-int resault = Convert.ToInt32 (Console.ReadLine());
-return resault;
+int[] arr = new int[size];
+Random rnd = new Random();
+for(int i = 0; i < arr.Length; i++)
+{
+arr[i] = rnd.Next(100, 999);
+}
+return arr;
 }
 
-int number = Prompt("Введите число");
+System.Console.Write("Введите длину массива: ");
+int size = Convert.ToInt32(Console.ReadLine());
+int[] array = FillArrayWhithRandomNumber(size);
+System.Console.Write($"[{string.Join(", ", array)}] -> ");
 
-int first = number % 10;            
-int second = number / 10000;
-if (second == first)
+int count = 0;
+for(int i = 0; i < array.Length; i++)
+{
+if( array[i] % 2 == 0)
+{
+count++;
+}
+}
+System.Console.WriteLine(count);
+*/
 
-      Console.WriteLine("is a palindrome!");
+
+//Задача 36: Задайте одномерный массив, заполненный случайными числами. Найдите сумму элементов, стоящих на нечётных позициях.
+//[3, 7, 23, 12] -> 19
+//[-4, -6, 89, 6] -> 0
+
+/*
+int[] FillArrayWhithRandomNumber(int size)
+{
+int[] arr = new int[size];
+Random rnd = new Random();
+for(int i = 0; i < arr.Length; i++)
+{
+arr[i] = rnd.Next(1, 10);
+}
+return arr;
+}
+
+System.Console.Write("Введите длину массива: ");
+int size = Convert.ToInt32(Console.ReadLine());
+int[] array = FillArrayWhithRandomNumber(size);
+System.Console.Write($"[{string.Join(", ", array)}] -> ");   
+
+int sum = 0;
+for (int i = 0; i < array.Length; i++)
+if (i % 2 != 0)
+{
+    sum = sum + array[i];
+}
 else
-      Console.WriteLine("is not a palindrome!");
+{
+    array[i]= 0;
+}
+Console.Write(sum);
 */
 
 
-//Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.
 
-//A (3,6,8); B (2,1,-7), -> 15.84
-
-//A (7,-5, 0); B (1,-1,9) -> 11.53
+//Задача 38: Задайте массив вещественных чисел(тип double). 
+//Найдите разницу между максимальным и минимальным элементов массива.
+//[3,1; 7,2; 22,3; 2,4; 78,5] -> 76,1
 /*
-double Distance3D(double x1, double y1, double z1,  double x2, double y2,double z2)
+Console.WriteLine("Введите длину массива: ");
+int size = Convert.ToInt32(Console.ReadLine());
+double[] array = new double[size];
+FillArrayRandomNumbers(array);
+PrintArray(array);
+double min = Int32.MaxValue;
+double max = Int32.MinValue;
+
+for (int i = 0; i < array.Length; i++)
 {
-double res = Math.Sqrt(Math.Pow(x2 - x1 ,2) + Math.Pow(y2 - y1, 2)+ Math.Pow(z2 - z1, 2));
-return Math.Round(res, 2);
+    if (array[i] > max)
+        {
+            max = array[i];
+        }
+    if (array[i] < min)
+        {
+            min = array[i];
+        }
 }
 
-Console.Write("Введите координату по Х для первой точки ");
-double x1 = Convert.ToDouble(Console.ReadLine());
-Console.Write("Введите координату по У для первой точки ");
-double y1 = Convert.ToDouble(Console.ReadLine());
-Console.Write("Введите координату по У для первой точки ");
-double z1 = Convert.ToDouble(Console.ReadLine());
-Console.Write("Введите координату по Х для второй точки ");
-double x2 = Convert.ToDouble(Console.ReadLine());
-Console.Write("Введите координату по Y для второй точки ");
-double y2 = Convert.ToDouble(Console.ReadLine());
-Console.Write("Введите координату по У для первой точки ");
-double z2 = Convert.ToDouble(Console.ReadLine());
+Console.WriteLine($" {max - min}");
 
-double distance = Distance3D(x1, y1, z1, x2, y2, z2);
-System.Console.WriteLine($"Расстояние между точками = {distance}");
-*/
-
-
-//Напишите программу, которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.
-//3 -> 1, 8, 27
-//5 -> 1, 8, 27, 64, 125
-/*
-int Prompt (string message)
+void FillArrayRandomNumbers(double[] array)
 {
-Console.Write(message);
-int resault = Convert.ToInt32 (Console.ReadLine());
-return resault;
+    for(int i = 0; i < array.Length; i++)
+        {
+            array[i] = Convert.ToDouble(new Random().Next(100,1000)) / 100;
+        }
 }
-
-int number = Prompt("Введите число > ");
-for(int i = 1; i <= number; i++)  
-
+void PrintArray(double[] array)
 {
-Console.Write($"{Math.Pow(i, 3)} ");       
-}
-*/
-
+    Console.Write("[ ");
+    for(int i = 0; i < array.Length; i++)
+        {
+            Console.Write(array[i] + " " );
+        }
+    Console.Write("]"+ "->");
+   
+   }
+   */
