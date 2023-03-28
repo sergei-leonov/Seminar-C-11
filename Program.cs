@@ -1,53 +1,16 @@
-﻿//Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
-//m = 3, n = 4.
-//0,5 7 -2 -0,2
-//1 -3,3 8 -9,9
-//8 7,8 -7,1 9
-/*
-double [,] FillarrayWithRandom(int row, int column)
-{
-double[,] array = new double[row, column];
-Random rnd = new Random();
-for (int i = 0; i < array.GetLength(0); i++)
-{
-for (int j = 0; j < array.GetLength(1); j++)
-{
-array[i, j] = rnd.NextDouble() +  rnd.Next(-10, 9 );
-
-}
-}
-return array;
-}
-
-void Printarray(double[,] array)
-{
-for (int i = 0; i < array.GetLength(0); i++)
-{
-for (int j = 0; j < array.GetLength(1); j++)
-{
-Console.Write($"{array[i,j]} \t");
-}
-Console.WriteLine();
-}
-}
-
-Console.Write("Введите кол-во строк: ");
-int row = Convert.ToInt32(Console.ReadLine());
-Console.Write("Введите кол-во столбцов: ");
-int column = Convert.ToInt32(Console.ReadLine());
-double[,] array = FillarrayWithRandom(row, column); // это мы сами создали матрицу 
-Printarray(array);
-*/
-
-//Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает значение этого элемента или же указание, что такого элемента нет.
-//Например, задан массив:
-//1 4 7 2
-//5 9 2 3
-//8 4 2 4
-//17 -> такого числа в массиве нет
+﻿
+// Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
+// Например, задан массив:
+// 1 4 7 2
+// 5 9 2 3
+// 8 4 2 4
+// В итоге получается вот такой массив:
+// 7 4 2 1
+// 9 5 3 2
+// 8 4 4 2
 
 /*
-int[,] FillarrayWithRandom(int row, int column)
+int[,] FillMatrixWithRandom(int row, int column)
 {
 int[,] array = new int[row, column];
 Random rnd = new Random();
@@ -73,48 +36,39 @@ Console.WriteLine();
 }
 }
 
-
+void OrderArrayLines(int[,] matrix)
+{
+  for (int i = 0; i < matrix.GetLength(0); i++)
+  {
+    for (int j = 0; j < matrix.GetLength(1); j++)
+    {
+      for (int k = 0; k < matrix.GetLength(1) - 1; k++)
+      {
+        if (matrix[i, k] < matrix[i, k + 1])
+        {
+          int number = matrix[i, k + 1];
+          matrix[i, k + 1] = matrix[i, k];
+          matrix[i, k] = number;
+        }
+      }
+    }
+  }
+}
 Console.Write("Введите кол-во строк: ");
 int row = Convert.ToInt32(Console.ReadLine());
 Console.Write("Введите кол-во столбцов: ");
 int column = Convert.ToInt32(Console.ReadLine());
-int[,] matrix = FillarrayWithRandom(row, column); 
+int[,] matrix = FillMatrixWithRandom(row, column);
 PrintMatrix(matrix);
-int elements = Convert.ToInt32(Console.ReadLine());
-
-bool NumElements = false;
-
-{
-    for (int i = 0; i < matrix.GetLength(0); i++)
-    {
-       for (int j = 0; j < matrix.GetLength(1); j++)
-        {
-if(elements == matrix [i,j])
-
-NumElements = true;
-
-}
-}
-if(NumElements)
-{
-System.Console.WriteLine("Такое число в массиве есть");
-}
-else
-{
-System.Console.WriteLine("Такого числа в массиве нет");
-}
-}
+OrderArrayLines(matrix);
+PrintMatrix(matrix);
 */
 
-// Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
-// Например, задан массив:
-// 1 4 7 2
-// 5 9 2 3
-// 8 4 2 4
-// Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
+
+// Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
 
 /*
-int[,] FillarrayWithRandom(int row, int column)
+int[,] FillMatrixWithRandom(int row, int column)
 {
 int[,] array = new int[row, column];
 Random rnd = new Random();
@@ -128,7 +82,7 @@ array[i, j] = rnd.Next(0, 10);
 return array;
 }
 
-void Printarray(int[,] array)
+void PrintMatrix(int[,] array)
 {
 for (int i = 0; i < array.GetLength(0); i++)
 {
@@ -140,23 +94,98 @@ Console.WriteLine();
 }
 }
 
-
- void SumDiag(int[,] array) 
+void SumDiag(int[,] matrix) 
 {
-
-for (int j = 0; j < array.GetLength(1); j++)
-
+ 
+int sum = 10;
+int index = 0;
+for (int i = 0; i <  matrix.GetLength(0); i++)
 {
-    double number = 0;
-     for (int i = 0; i < array.GetLength(0) ; i++)
-    {
-       number = (number + array[i, j]);
-    }
-    number = number / array.GetLength(0);
-    Console.Write(number +  "; ");
-    
+int number = 0;
+for (int j = 0; j <  matrix.GetLength(1); j++)
+{
+number += matrix[i, j];
 }
+if (number < sum)
+{
+ sum = number;
+index = i;
+}
+}
+Console.WriteLine($"Строка под индексом: {index} , с наименьшей суммой элементов - {sum}");
 Console.WriteLine();
+for (int i = 0; i < matrix.GetLength(1); i++)
+{
+Console.Write(matrix[index, i]+" ");
+}
+Console.ReadKey();  
+}
+Console.Write("Введите кол-во строк: ");
+int row = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите кол-во столбцов: ");
+int column = Convert.ToInt32(Console.ReadLine());
+int[,] matrix = FillMatrixWithRandom(row, column); // это мы сами создали матрицу 
+PrintMatrix(matrix);
+SumDiag(matrix);
+System.Console.WriteLine();
+*/
+
+
+// Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
+// Массив размером 2 x 2 x 2
+// 66(0,0,0) 25(0,1,0)
+// 34(1,0,0) 41(1,1,0)
+// 27(0,0,1) 90(0,1,1)
+// 26(1,0,1) 55(1,1,1)
+
+/*
+int[,,] FillMatrixWithRandom(int row, int column, int depth)
+{
+int[,,] array = new int[row, column, depth];
+Random rnd = new Random();
+for (int i = 0; i < array.GetLength(0); i++)
+{
+for (int j = 0; j < array.GetLength(1); j++)
+{
+  for (int k = 0; k < array.GetLength(2); k++)
+{
+array[i, j, k] = rnd.Next(0, 99);
+}
+}
+
+}
+return array;
+}
+
+void PrintMatrix(int[,,] array)
+{
+for (int i = 0; i < array.GetLength(0); i++)
+{
+for (int j = 0; j < array.GetLength(1); j++)
+{
+  for (int k = 0; k < array.GetLength(2); k++)
+  {
+    Console.Write($"{array[i,j,k]} \t");
+}
+}
+
+Console.WriteLine();
+}
+}
+
+void Portray3dArray(int[,,] array)
+{
+for (int i = 0; i < array.GetLength(0); i++)
+{
+for (int j = 0; j < array.GetLength(1); j++)
+{
+  for (int k = 0; k < array.GetLength(2); k++)
+  {
+    System.Console.Write("[" + i + "," + j + "," + k + "]" + array[i, j, k] + " ");
+  }
+  System.Console.WriteLine();
+}
+}
 }
 
 
@@ -164,11 +193,15 @@ Console.Write("Введите кол-во строк: ");
 int row = Convert.ToInt32(Console.ReadLine());
 Console.Write("Введите кол-во столбцов: ");
 int column = Convert.ToInt32(Console.ReadLine());
-int[,] array = FillarrayWithRandom(row, column); 
-SumDiag(array);
+Console.Write("Введите кол-во столбцов: ");
+int depth = Convert.ToInt32(Console.ReadLine());
+int[,,] matrix = FillMatrixWithRandom(row, column, depth);
+PrintMatrix(matrix);
+Portray3dArray(matrix);
 System.Console.WriteLine();
-Printarray(array);
+
 */
+
 
 
 
