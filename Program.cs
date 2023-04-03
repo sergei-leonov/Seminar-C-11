@@ -1,211 +1,85 @@
-﻿
-// Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
-// Например, задан массив:
-// 1 4 7 2
-// 5 9 2 3
-// 8 4 2 4
-// В итоге получается вот такой массив:
-// 7 4 2 1
-// 9 5 3 2
-// 8 4 4 2
+﻿// Задача 64: Задайте значение N. Напишите программу, которая выведет все натуральные числа в промежутке от N до 1. Выполнить с помощью рекурсии.
 
+// N = 5 -> "5, 4, 3, 2, 1"
+// N = 8 -> "8, 7, 6, 5, 4, 3, 2, 1"
 /*
-int[,] FillMatrixWithRandom(int row, int column)
+void NumNat ( int n)
 {
-int[,] array = new int[row, column];
-Random rnd = new Random();
-for (int i = 0; i < array.GetLength(0); i++)
-{
-for (int j = 0; j < array.GetLength(1); j++)
-{
-array[i, j] = rnd.Next(0, 10);
-}
-}
-return array;
-}
-
-void PrintMatrix(int[,] array)
-{
-for (int i = 0; i < array.GetLength(0); i++)
-{
-for (int j = 0; j < array.GetLength(1); j++)
-{
-Console.Write($"{array[i,j]} \t");
-}
-Console.WriteLine();
-}
-}
-
-void OrderArrayLines(int[,] matrix)
-{
-  for (int i = 0; i < matrix.GetLength(0); i++)
-  {
-    for (int j = 0; j < matrix.GetLength(1); j++)
+if (n == 0)
     {
-      for (int k = 0; k < matrix.GetLength(1) - 1; k++)
-      {
-        if (matrix[i, k] < matrix[i, k + 1])
-        {
-          int number = matrix[i, k + 1];
-          matrix[i, k + 1] = matrix[i, k];
-          matrix[i, k] = number;
-        }
-      }
+        return;
     }
-  }
+    
+    Console.Write($"{n} ");
+    NumNat(n - 1);
 }
-Console.Write("Введите кол-во строк: ");
-int row = Convert.ToInt32(Console.ReadLine());
-Console.Write("Введите кол-во столбцов: ");
-int column = Convert.ToInt32(Console.ReadLine());
-int[,] matrix = FillMatrixWithRandom(row, column);
-PrintMatrix(matrix);
-OrderArrayLines(matrix);
-PrintMatrix(matrix);
+
+
+System.Console.WriteLine("Введите число : ");
+int n = Convert.ToInt32(System.Console.ReadLine());
+NumNat (n);
 */
 
 
-// Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
+// Задача 66: Задайте значения M и N. Напишите программу, которая найдёт сумму натуральных элементов в промежутке от M до N.
+
+// M = 1; N = 15 -> 120
+// M = 4; N = 8. -> 30
 
 /*
-int[,] FillMatrixWithRandom(int row, int column)
+System.Console.WriteLine("Введите число : ");
+int M = Convert.ToInt32(System.Console.ReadLine());
+System.Console.WriteLine("Введите число : ");
+int N = Convert.ToInt32(System.Console.ReadLine());
+
+
+void GapNumberSum (int M, int N, int sum)
 {
-int[,] array = new int[row, column];
-Random rnd = new Random();
-for (int i = 0; i < array.GetLength(0); i++)
-{
-for (int j = 0; j < array.GetLength(1); j++)
-{
-array[i, j] = rnd.Next(0, 10);
-}
-}
-return array;
+    if (M > N) 
+    {
+        Console.WriteLine($"Сумма натуральных элементов в промежутке от M до N: {sum}");
+
+        return;
+    }
+    sum = sum + (M++);
+    GapNumberSum(M, N, sum);
 }
 
-void PrintMatrix(int[,] array)
-{
-for (int i = 0; i < array.GetLength(0); i++)
-{
-for (int j = 0; j < array.GetLength(1); j++)
-{
-Console.Write($"{array[i,j]} \t");
-}
-Console.WriteLine();
-}
-}
-
-void SumDiag(int[,] matrix) 
-{
- 
-int sum = 10;
-int index = 0;
-for (int i = 0; i <  matrix.GetLength(0); i++)
-{
-int number = 0;
-for (int j = 0; j <  matrix.GetLength(1); j++)
-{
-number += matrix[i, j];
-}
-if (number < sum)
-{
- sum = number;
-index = i;
-}
-}
-Console.WriteLine($"Строка под индексом: {index} , с наименьшей суммой элементов - {sum}");
-Console.WriteLine();
-for (int i = 0; i < matrix.GetLength(1); i++)
-{
-Console.Write(matrix[index, i]+" ");
-}
-Console.ReadKey();  
-}
-Console.Write("Введите кол-во строк: ");
-int row = Convert.ToInt32(Console.ReadLine());
-Console.Write("Введите кол-во столбцов: ");
-int column = Convert.ToInt32(Console.ReadLine());
-int[,] matrix = FillMatrixWithRandom(row, column); // это мы сами создали матрицу 
-PrintMatrix(matrix);
-SumDiag(matrix);
-System.Console.WriteLine();
+GapNumberSum(M, N, 0);
 */
 
 
-// Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
-// Массив размером 2 x 2 x 2
-// 66(0,0,0) 25(0,1,0)
-// 34(1,0,0) 41(1,1,0)
-// 27(0,0,1) 90(0,1,1)
-// 26(1,0,1) 55(1,1,1)
+//System.Console.WriteLine(GapNumberSum (M, N));
+
+// Задача 68: Напишите программу вычисления функции Аккермана с помощью рекурсии. Даны два неотрицательных числа m и n.
+// m = 2, n = 3 -> A(m,n) = 9
+// m = 3, n = 2 -> A(m,n) = 29
 
 /*
-int[,,] FillMatrixWithRandom(int row, int column, int depth)
+System.Console.WriteLine("Введите число : ");
+int m = Convert.ToInt32(System.Console.ReadLine());
+System.Console.WriteLine("Введите число : ");
+int n = Convert.ToInt32(System.Console.ReadLine());
+AkkermanFunction(m,n);
+
+void AkkermanFunction(int m, int n)
 {
-int[,,] array = new int[row, column, depth];
-Random rnd = new Random();
-for (int i = 0; i < array.GetLength(0); i++)
-{
-for (int j = 0; j < array.GetLength(1); j++)
-{
-  for (int k = 0; k < array.GetLength(2); k++)
-{
-array[i, j, k] = rnd.Next(0, 99);
-}
+    Console.Write(Akkerman(m, n)); 
 }
 
-}
-return array;
-}
-
-void PrintMatrix(int[,,] array)
+int Akkerman(int m, int n)
 {
-for (int i = 0; i < array.GetLength(0); i++)
-{
-for (int j = 0; j < array.GetLength(1); j++)
-{
-  for (int k = 0; k < array.GetLength(2); k++)
-  {
-    Console.Write($"{array[i,j,k]} \t");
+    if (m == 0)
+    {
+        return n + 1;
+    }
+    else if (n == 0 && m > 0)
+    {
+        return Akkerman(m - 1, 1);
+    }
+    else
+    {
+        return (Akkerman(m - 1, Akkerman(m, n - 1)));
+    }
 }
-}
-
-Console.WriteLine();
-}
-}
-
-void Portray3dArray(int[,,] array)
-{
-for (int i = 0; i < array.GetLength(0); i++)
-{
-for (int j = 0; j < array.GetLength(1); j++)
-{
-  for (int k = 0; k < array.GetLength(2); k++)
-  {
-    System.Console.Write("[" + i + "," + j + "," + k + "]" + array[i, j, k] + " ");
-  }
-  System.Console.WriteLine();
-}
-}
-}
-
-
-Console.Write("Введите кол-во строк: ");
-int row = Convert.ToInt32(Console.ReadLine());
-Console.Write("Введите кол-во столбцов: ");
-int column = Convert.ToInt32(Console.ReadLine());
-Console.Write("Введите кол-во столбцов: ");
-int depth = Convert.ToInt32(Console.ReadLine());
-int[,,] matrix = FillMatrixWithRandom(row, column, depth);
-PrintMatrix(matrix);
-Portray3dArray(matrix);
-System.Console.WriteLine();
-
 */
-
-
-
-
-
-
-
-
